@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class SetsInformation : MonoBehaviour {
 
-	public int[] subsetsForSet = new int[12];
-	public int[,] cardsInSubsets = new int[12,7];
+	public int[] subsetsForSet;
+	public int[,] cardsInSubsets;
 
 	// Use this for initialization
 	void Start () {
+		subsetsForSet = new int[12];
+		cardsInSubsets = new int[12,7];
+
 		subsetsForSet [0] = 1;
 		subsetsForSet [1] = 1;
 		subsetsForSet [2] = 6;
@@ -27,7 +30,6 @@ public class SetsInformation : MonoBehaviour {
 				cardsInSubsets [i, j] = 0;
 			}
 		}
-
 		cardsInSubsets [0, 1] = 9;
 		cardsInSubsets [1, 1] = 113;
 		cardsInSubsets [2, 1] = 20;
