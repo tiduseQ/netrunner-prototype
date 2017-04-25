@@ -5,6 +5,8 @@ using UnityEngine;
 public class CardEvent : Card {
 
 	new public CardTypes type = CardTypes.Event;
+	
+	public string eventName = "";
 
 	protected virtual void PlayEvent() {}
 

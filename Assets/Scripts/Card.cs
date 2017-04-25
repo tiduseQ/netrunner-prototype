@@ -11,6 +11,8 @@ public class Card : MonoBehaviour {
 
 	public enum TargetTypes { All, None, InstalledAll, This };
 	public enum BoardAreas { HQ, RND, Archives, RemoteServer, ICE, Grip, Stack, Heap, Rig };
+	
+	public List<CardEvent> CardActions = new List<CardEvent>();
 
 	public CardSide side;
 	public CardFaction faction;
