@@ -6,20 +6,14 @@ using UnityEngine.UI;
 public class Deck : MonoBehaviour {
 
 	public Stack<GameObject> cardsInDeck = new Stack<GameObject>();
-	public GameObject Obj_Rig;
-	public GameObject Obj_Hand;
-	public GameObject Obj_Deck;
 	
 	public string backNumber = "001";
+	public Board.BoardSide side; //most important - is it "runner" or "corp"
 	Sprite emptyDeckSprite;
 	Sprite nonEmptyDeckSprite;
 
 	// Use this for initialization
 	void Start () {
-		Obj_Rig = GameObject.Find ("Rig");
-		Obj_Hand = GameObject.Find ("Hand");
-		Obj_Deck = GameObject.Find ("Deck");
-		
 		emptyDeckSprite = Resources.Load<Sprite>("CardBacks/" + backNumber + "/" + "_000_BackTexture");
 		nonEmptyDeckSprite = Resources.Load<Sprite>("CardBacks/" + backNumber + "/" + "_001_BackTexture");
 	}
@@ -42,8 +36,14 @@ public class Deck : MonoBehaviour {
 			Debug.Log ("Deck is empty");
 		} else {
 			cardToReturn = cardsInDeck.Pop ();
-			Obj_Hand.GetComponent<Hand> ().AddCardToHand (cardToReturn);
-			Debug.Log ("Drawing " + cardToReturn.name);
+			if (side == Board.BoardSide.Runner) {
+				Board.Obj_Grip.AddCard (cardToReturn);
+			} else if (side == Board.BoardSide.Corp) {
+				Board.Obj_HQ.AddCard (cardToReturn);
+			} else
+				Debug.Log ("Deck.DrawCard() : side is not set properly: " + side);
+			
+			Debug.Log ("Deck.DrawCard() : Drawing " + cardToReturn.name);
 		}
 	}
 	
@@ -64,7 +64,6 @@ public class Deck : MonoBehaviour {
 
 	public void AddRandomCardToTop(string dull) {
 		Debug.Log ("Deck.AddRandomCardToTop()");
-		//Vector3 cardReturned = Obj_Deck.GetComponent<SetsInformation> ().ReturnRandomCard ();
 	}
 
 

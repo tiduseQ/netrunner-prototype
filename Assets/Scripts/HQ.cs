@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heap : Trash {
+public class HQ : Hand {
 
 	void Start () {
-		side = "runner";
+		side = "corp";
 	}
-
 }

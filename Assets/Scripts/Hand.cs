@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Hand : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
 
+	public string side;
+
 	GameObject cardInstantiated;
 	public float cardHeight = 0f;
 	public float cardWidth = 0f;
@@ -24,7 +26,8 @@ public class Hand : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 		return CardToReturn;
 	}
 
-	public void AddCardToHand(string cardSet, string cardSubSet, string cardNumber) {
+	public void AddCard(string cardSet, string cardSubSet, string cardNumber) {
+		Debug.Log ("Hand.AddCardToHand(string cardSet, string cardSubSet, string cardNumber)");
 		GameObject cardToInstantiate = GetCardFromStrings(cardSet, cardSubSet, cardNumber);
 		if (cardToInstantiate != null) {
 			cardInstantiated = Instantiate (cardToInstantiate, this.transform);
@@ -35,7 +38,8 @@ public class Hand : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 		}
 	}
 
-	public void AddCardToHand(GameObject cardToAdd) {
+	public void AddCard(GameObject cardToAdd) {
+		Debug.Log ("Hand.AddCard(GameObject cardToAdd)");
 		cardsInHand.Add (cardToAdd.gameObject);
 		OrganizeHand ();
 	}
@@ -49,6 +53,12 @@ public class Hand : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 			Debug.Log ("Success in load at: " + resourceString);
 		}
 		return Instantiate(returnResource, this.transform);
+	}
+
+	public void RemoveCard(GameObject cardToRemove) {
+		Debug.Log ("HandRemoveCard(GameObject cardToRemove)");
+		cardsInHand.Remove (cardToRemove);
+		OrganizeHand ();
 	}
 
 	public void OrganizeHand() {
@@ -66,13 +76,10 @@ public class Hand : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 			i++;
 		}
 	}
-
-
-	//Vector3 whenNotHovered = new Vector3(283.5f,-25f,0f);
-	//Vector3 whenHovered = new Vector3(283.5f,40f,0f);
+		
 	public void OnPointerEnter(PointerEventData eventData) {
 		Debug.Log ("OnPointerEnter");
-		AddCardToHand ("001", "001", "002");
+		AddCard ("001", "001", "002");
 		OrganizeHand ();
 		//this.transform.position = whenHovered;
 	}
