@@ -5,6 +5,6 @@ using UnityEngine;
 public class Grip : Hand {
 
 	void Start () {
-		side = "runner";
+		side = Board.BoardSide.Runner;
 	}
 }

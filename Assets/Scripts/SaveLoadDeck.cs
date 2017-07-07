@@ -104,7 +104,10 @@ public class SaveLoadDeck : MonoBehaviour {
 	private void InjectCardsIntoDeck () {
 		foreach(string[] str in loadedData)
 		{
-			Debug.Log (str.ToString());
+			if (str [0] == "card") {
+				Board.Obj_Stack.AddCardToTop( Board.InstantiateCard (str [1], str [2], str [3]));
+			} else
+				Debug.Log ("SaveLoadDeck.InjectCardsIntoDeck() : NAME = " + str [1]);
 		}
 		return;
 	}

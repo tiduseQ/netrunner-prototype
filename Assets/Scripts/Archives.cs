@@ -5,6 +5,6 @@ using UnityEngine;
 public class Archives : Trash {
 
 	void Start () {
-		side = "corp";
+		side = Board.BoardSide.Corp;
 	}
 }

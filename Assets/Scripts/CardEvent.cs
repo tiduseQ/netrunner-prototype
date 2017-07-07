@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardEvent : MonoBehaviour {
+public class CardEvent {
 
-	public enum EventCondition {Installed, NotInstalled};
+	public enum EventCondition {Installed, NotInstalled, EndOfRound, Mandatory};
 	
 	public string eventName = "";
 	public int costCoin = 0;
@@ -12,12 +12,17 @@ public class CardEvent : MonoBehaviour {
 	public delegate bool costAdditionalDelegate();
 	public costAdditionalDelegate costAdditional;
 	public List<EventCondition> activeCondition = new List<EventCondition>();
+	public Card source = null;
+	public List<Card> target = new List<Card> ();
 
-	public CardEvent (int newCoin, int newClick, costAdditionalDelegate newAdditional) {
+	public CardEvent (int newCoin, int newClick, costAdditionalDelegate newAdditional, string newEventName) {
 		costCoin = newCoin;
 		costClick = newClick;
 		costAdditional = newAdditional;
+		eventName = newEventName;
 	}
+
+	public CardEvent () {}
 
 	protected virtual void PlayEvent(Board.BoardSide side) {
 		Debug.Log ("CardEvent.PlayEvent()");
@@ -65,19 +70,5 @@ public class CardEvent : MonoBehaviour {
 			Debug.Log ("InstallHardware.AssessCost(Board.BoardSide side) : Unknown side: " + side);
 			return false;
 		}
-
-		//assess conditions
-		if (side == Board.BoardSide.Runner) {
-			return (Board.runnerCredits >= costCoin && Board.runnerClicks >= costClick ? true : false);
-		} else if (side == Board.BoardSide.Corp) {
-			return (Board.corpCredits >= costCoin && Board.corpClicks >= costClick ? true : false);
-		} else {
-			Debug.Log ("InstallHardware.AssessCost(Board.BoardSide side) : Unknown side: " + side);
-			return false;
-		}
-	}
-
-	public CardEvent(string newEventName) {
-		eventName = newEventName;
 	}
 }

@@ -5,6 +5,6 @@ using UnityEngine;
 public class HQ : Hand {
 
 	void Start () {
-		side = "corp";
+		side = Board.BoardSide.Corp;
 	}
 }
