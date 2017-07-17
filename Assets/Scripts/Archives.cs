@@ -6,5 +6,6 @@ public class Archives : Trash {
 
 	void Start () {
 		side = Board.BoardSide.Corp;
+		area = Card.BoardAreas.Archives;
 	}
 }

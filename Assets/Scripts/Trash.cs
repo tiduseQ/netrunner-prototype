@@ -2,6 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trash : CardCollection {
-
-}
+public class Trash : CardCollection {}

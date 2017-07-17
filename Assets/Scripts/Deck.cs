@@ -10,16 +10,11 @@ public class Deck : CardCollection {
 	public Sprite emptyDeckSprite;
 	public Sprite nonEmptyDeckSprite;
 
-	public Deck() {
-		Debug.Log ("Deck.Deck()");
-	}
+	public Deck() {}
 
 	void Start () {
-		Debug.Log ("Deck.Start()");
-		emptyDeckSprite = Resources.Load<Sprite>("CardBacks/" + backNumber + "/" + "_000_BackTexture");
-		nonEmptyDeckSprite = Resources.Load<Sprite>("CardBacks/" + backNumber + "/" + "_001_BackTexture");
+		LoadBackImages ();
 	}
-
 
 	void Update () {
 		if (cardsInCollection.Count != lastUpdateCardCount) {
@@ -30,6 +25,11 @@ public class Deck : CardCollection {
 				this.GetComponent<Image> ().sprite = emptyDeckSprite;
 			}
 		}
+	}
+
+	protected void LoadBackImages() {
+		emptyDeckSprite = Resources.Load<Sprite>("CardBacks/" + backNumber + "/" + "_000_BackTexture");
+		nonEmptyDeckSprite = Resources.Load<Sprite>("CardBacks/" + backNumber + "/" + "_001_BackTexture");
 	}
 
 	public void DrawCard() {

@@ -8,7 +8,7 @@ public static class Board {
 	public enum Currency {Click, Credit};
 
 	public static BoardSide currentTurn;
-	public static List<Card> allCards = new List<Card> ();
+	public static List<GameObject> allCards = new List<GameObject> ();
 
 	public static int cardsNumber = 0;
 
@@ -55,8 +55,7 @@ public static class Board {
 
 	//servers still missing
 	public static int AssignId() {
-		cardsNumber++;
-		return cardsNumber;
+		return cardsNumber++;
 	}
 		
 	public static CardCollection ReturnProperCollection(Card.BoardAreas newBoardArea) {
@@ -154,8 +153,10 @@ public static class Board {
 	}
 
 	public static GameObject InstantiateCard(string newCardSet, string newCardSubSet, string newCardNumber) {
-		Debug.Log ("Board.InstantiateCard(string newCardSet, string newCardSubSet, string newCardNumber)");
-		return GameObject.Instantiate(GetCardFromStrings(newCardSet, newCardSubSet, newCardNumber));
+		GameObject cardToReturn = GameObject.Instantiate(GetCardFromStrings(newCardSet, newCardSubSet, newCardNumber));
+		cardToReturn.GetComponent<Card> ().id = AssignId ();
+		allCards.Add (cardToReturn);
+		return cardToReturn;
 	}
 
 	private static GameObject GetCardFromStrings(string cardSet, string cardSubSet, string cardNumber) {

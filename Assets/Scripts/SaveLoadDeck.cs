@@ -12,9 +12,17 @@ public class SaveLoadDeck : MonoBehaviour {
 
 	string appdata = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
 
-	public void LoadDeck() {
+	private void LoadDeck(Card.CardSide side) {
 		LoadDeckFromFile(appdata+"/myunitygame/saves/file1.save");
-		InjectCardsIntoDeck ();
+		InjectCardsIntoDeck (side);
+	}
+
+	public void LoadRunnerDeck() {
+		LoadDeck (Card.CardSide.Runner);
+	}
+
+	public void LoadCorpDeck() {
+		LoadDeck (Card.CardSide.Corp);
 	}
 
 	public void SaveDeck() {
@@ -101,14 +109,22 @@ public class SaveLoadDeck : MonoBehaviour {
 		}
 	}
 
-	private void InjectCardsIntoDeck () {
+	private void InjectCardsIntoDeck (Card.CardSide side) {
+		Deck targetDeck;
+		if (side == Card.CardSide.Corp) {
+			targetDeck = Board.Obj_RND;
+		} else {
+			targetDeck = Board.Obj_Stack;
+		}
+
 		foreach(string[] str in loadedData)
 		{
 			if (str [0] == "card") {
-				Board.Obj_Stack.AddCardToTop( Board.InstantiateCard (str [1], str [2], str [3]));
+				targetDeck.AddCardToTop( Board.InstantiateCard (str [1], str [2], str [3]));
 			} else
 				Debug.Log ("SaveLoadDeck.InjectCardsIntoDeck() : NAME = " + str [1]);
 		}
+		loadedData.Clear ();
 		return;
 	}
 }

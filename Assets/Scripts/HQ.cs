@@ -6,5 +6,6 @@ public class HQ : Hand {
 
 	void Start () {
 		side = Board.BoardSide.Corp;
+		area = Card.BoardAreas.HQ;
 	}
 }

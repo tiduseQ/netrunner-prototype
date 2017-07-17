@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	public enum TargetTypes { All, InstalledAll, This };
-	public enum BoardAreas { HQ, RND, Archives, RemoteServer, ICE, Grip, Stack, Heap, Rig };
 
 	public Transform targetAreaPrefab;
 	public TargetTypes[] viableTargets;

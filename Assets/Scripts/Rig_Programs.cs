@@ -12,6 +12,11 @@ public class Rig_Programs : CardCollection {
 	public float cardScale = 1f;
 	float cardDistance = 0f;
 
+	void Start () {
+		side = Board.BoardSide.Runner;
+		area = Card.BoardAreas.Rig_Programs;
+	}
+
 	public void OrganizePrograms() {
 		progWidth = ((RectTransform)this.transform).rect.width;
 		progHeight = ((RectTransform)this.transform).rect.height;

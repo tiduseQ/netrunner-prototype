@@ -6,5 +6,7 @@ public class RND : Deck {
 
 	void Start () {
 		side = Board.BoardSide.Corp;
+		area = Card.BoardAreas.RND;
+		base.LoadBackImages ();
 	}
 }

@@ -6,6 +6,7 @@ public class Heap : Trash {
 
 	void Start () {
 		side = Board.BoardSide.Runner;
+		area = Card.BoardAreas.Heap;
 	}
 
 }

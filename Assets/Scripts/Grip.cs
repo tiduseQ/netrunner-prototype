@@ -6,5 +6,6 @@ public class Grip : Hand {
 
 	void Start () {
 		side = Board.BoardSide.Runner;
+		area = Card.BoardAreas.Grip;
 	}
 }

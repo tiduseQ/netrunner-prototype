@@ -12,6 +12,11 @@ public class Rig_Resources : CardCollection {
 	public float cardScale = 1f;
 	float cardDistance = 0f;
 
+	void Start () {
+		side = Board.BoardSide.Runner;
+		area = Card.BoardAreas.Rig_Resources;
+	}
+
 	public void OrganizeResources() {
 		resWidth = ((RectTransform)this.transform).rect.width;
 		resHeight = ((RectTransform)this.transform).rect.height;

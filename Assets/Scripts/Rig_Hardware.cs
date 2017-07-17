@@ -12,6 +12,11 @@ public class Rig_Hardware : CardCollection {
 	public float cardScale = 1f;
 	float cardDistance = 0f;
 
+	void Start () {
+		side = Board.BoardSide.Runner;
+		area = Card.BoardAreas.Rig_Hardware;
+	}
+
 	public void OrganizeHardware() {
 		hardWidth = ((RectTransform)this.transform).rect.width;
 		hardHeight = ((RectTransform)this.transform).rect.height;
